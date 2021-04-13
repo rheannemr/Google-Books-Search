@@ -1,8 +1,9 @@
 const router = require("express").Router();
-const Book = require("../../models/Book");
+const Book = require("../models/Book");
 
 router.get("/", async (req, res) => {
     try {
+        console.log("We are getting all books");
         const books = await Book.find();
         res.json(books);
     } catch (err) {
