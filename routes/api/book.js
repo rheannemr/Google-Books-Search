@@ -1,15 +1,27 @@
 const router = require("express").Router();
-const booksController = require("../../controllers/booksController");
+const Book = require("../../models/books");
 
-// Matches with "/api/books"
-router.route("/")
-  .get(booksController.findAll)
-  .post(booksController.create);
+router.get("/", async (req, res) => {
+    try {
+        const books = await Book.find();
+        res.json(books);
+    } catch (err) {
+        res.status(501);
+        console.log("Error in the books get route: ", err);
+        res.send("Unexpected server error when getting books");
+    }
+});
 
-// Matches with "/api/books/:id"
-router.route("/:id")
-  .get(booksController.findById)
-  .put(booksController.update)
-  .delete(booksController.remove);
+router.post("/", async (req, res) => {
+    try {
+        const book = await Book.create(req.body);
+        res.status(201);
+        res.send(book._id);
+    } catch (err) {
+        res.status(501);
+        console.log("Error in the books post route: ", err);
+        res.send("Unexpected server error when posting a book");
+    }
+});
 
 module.exports = router;
