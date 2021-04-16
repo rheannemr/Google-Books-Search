@@ -21,7 +21,7 @@ app.use("/api/book", booksApiRoutes)
 
 // Send every other request to the React app
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://rheannemr:Blossom1137.@cluster0.poy4k.mongodb.net/googlebooks?retryWrites=true&w=majority", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks", { useNewUrlParser: true });
 // Define any API routes before this runs
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/public/index.html"));
