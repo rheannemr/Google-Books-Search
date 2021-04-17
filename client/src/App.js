@@ -1,7 +1,6 @@
-import React, { Component, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { HashRouter, Route } from "react-router-dom";
 import "./App.css";
-import Home from "./pages/Home/index";
 import SavedBooks from "./pages/SavedBooks/index";
 import SearchBooks from "./pages/SearchBooks/index";
 import Nav from "../src/components/Nav/index"
@@ -13,19 +12,14 @@ function App() {
   })
 
   return (
-    <Router>
+    <HashRouter basename='/'>
       <div>
-        <Nav />
-        <Switch>
-          <Route exact path={["/", "/searchbooks"]}>
-            <SearchBooks />
-          </Route>
-          <Route>
-            <SavedBooks />
-          </Route>
-        </Switch>
+          <Nav />
+          <Route exact path="/" component={SearchBooks} />
+          <Route exact path="/searchbooks" component={SearchBooks} />
+          <Route exact path="/savedbooks" component={SavedBooks} />
       </div>
-    </Router>
+    </HashRouter>
   );
 }
 

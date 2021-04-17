@@ -19,7 +19,7 @@ function SearchBooks() {
 
   // Loads all books and sets them to books
   function loadBooks() {
-    API.getBooks()
+    API.getBook()
       .then(res => 
         setBooks(res.data)
       )
@@ -27,11 +27,11 @@ function SearchBooks() {
   };
 
   // Deletes a book from the database with a given id, then reloads books from the db
-  function deleteBook(id) {
-    API.deleteBook(id)
-      .then(res => loadBooks())
-      .catch(err => console.log(err));
-  }
+//   function deleteBook(id) {
+//     API.deleteBook(id)
+//       .then(res => loadBooks())
+//       .catch(err => console.log(err));
+//   }
 
   // Handles updating component state when the user types into the input field
   function handleInputChange(event) {
@@ -84,27 +84,6 @@ function SearchBooks() {
                 Submit Book
               </FormBtn>
             </form>
-          </Col>
-          <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>Books On My List</h1>
-            </Jumbotron>
-            {books.length ? (
-              <List>
-                {books.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
-                      <strong>
-                        {book.title} by {book.author}
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => deleteBook(book._id)} />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
           </Col>
         </Row>
       </Container>

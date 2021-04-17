@@ -17,11 +17,19 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Define API routes here
-app.use("/api/book", booksApiRoutes)
+app.use("/api/books", booksApiRoutes)
 
 // Send every other request to the React app
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks",{ 
+useNewUrlParser: true,
+useUnifiedTopology: true,
+useCreateIndex: true,
+useFindAndModify: false });
+
+const db = mongoose.connection
+db.on("error", (error) => console.log(error));
+db.once("open", () => console.log("Connected to Database"));
 // Define any API routes before this runs
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/public/index.html"));
