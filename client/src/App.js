@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { HashRouter, Route } from "react-router-dom";
 import "./App.css";
-import SavedBooks from "./pages/SavedBooks/index";
-import SearchBooks from "./pages/SearchBooks/index";
-import Nav from "../src/components/Nav/index"
+import SavedBooks from "./pages/SavedBooks";
+import SearchBooks from "./pages/SearchBooks";
+import AppTabs from "./components/AppTabs/index"
 
 function App() {
 
@@ -14,7 +14,7 @@ function App() {
   return (
     <HashRouter basename='/'>
       <div>
-          <Nav />
+          <AppTabs />
           <Route exact path="/" component={SearchBooks} />
           <Route exact path="/searchbooks" component={SearchBooks} />
           <Route exact path="/savedbooks" component={SavedBooks} />
