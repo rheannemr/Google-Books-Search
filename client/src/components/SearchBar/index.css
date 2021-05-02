@@ -1,0 +1,12 @@
+#searchbar {
+    text-align:center;
+}
+
+#searchbar input {
+    width: 400px;
+    background-color: white;
+}
+
+#searchbutton {
+    margin-top: 8px;
+}
