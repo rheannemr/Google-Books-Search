@@ -1,11 +1,23 @@
 import React from "react";
+import { makeStyles } from '@material-ui/core'
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: 300,
+      textAlign: 'center',
+      clear: 'both'
+  }
+}));
+
 
 function Jumbotron({ children }) {
+  const classes = useStyles();
+
   return (
-    <div
-      style={{ height: 300, clear: "both", paddingTop: 120, textAlign: "center" }}
-      className="jumbotron"
-    >
+    <div className={classes.root}>
       {children}
     </div>
   );
